@@ -1,4 +1,4 @@
-curl -LO 'https://www.python.org/ftp/python/3.12.0/Python-3.12.0rc2.tgz'
+curl -LO 'https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz'
 tar xf *.tgz
 cd Python-3.120rc2
 mkdir install
