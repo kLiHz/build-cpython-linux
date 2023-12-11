@@ -12,7 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Who am I
-        run: whoami
+        run: |
+          echo $USER
       - name: Setup SSH server for Actor
         run: |
           sudo apt update && sudo apt install -qy openssh-server
@@ -24,9 +25,17 @@ jobs:
           sudo systemctl daemon-reload
           sudo systemctl restart sshd --now
           mkdir -p ~/.ssh
-          curl -s "https://api.github.com/users/$GITHUB_ACTOR/keys" | jq -r '.[].key' > ~/.ssh/authorized_keys
+          curl -s "https://api.github.com/users/$GITHUB_ACTOR/keys" | jq -r '.[].key' >> ~/.ssh/authorized_keys
           chmod 700 ~/.ssh
           chmod 600 ~/.ssh/authorized_keys
+      - name: Print authorized keys
+        run: |
+          cat ~/.ssh/authorized_keys
+      - name: Set user password
+        env:
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+        run: |
+          echo "$USER:$USER_PASSWORD" | sudo chpasswd
       - name: Connect to Cloudflare Tunnel
         env:
           CLOUDFLARE_TUNNEL_TOKEN: ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
