@@ -11,6 +11,9 @@ cd "Python-${VERSION}"
 
 OUTDIR="python-$VERSION"
 mkdir $OUTDIR
+
+sudo apt install pkg-config libssl-dev libsqlite3-dev libbz2-dev liblzma-dev tk-dev libreadline-dev libgdbm-dev python3-gdbm tcl-tclreadline libqdbm-dev libgdbm-compat-dev
+
 # sudo apt install -y llvm llvm-dev clang
 # CC=clang CXX=clang++ ./configure --with-lto=thin --enable-optimizations --prefix="$PWD/install/"
 sudo apt install clang-16
