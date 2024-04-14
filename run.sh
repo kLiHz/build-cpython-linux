@@ -13,7 +13,8 @@ OUTDIR="python-$VERSION"
 mkdir $OUTDIR
 # sudo apt install -y llvm llvm-dev clang
 # CC=clang CXX=clang++ ./configure --with-lto=thin --enable-optimizations --prefix="$PWD/install/"
-./configure --enable-optimizations --prefix="$PWD/$OUTDIR/"
+sudo apt install clang-16
+./configure --enable-optimizations --prefix="$PWD/$OUTDIR/" --enable-experimental-jit
 make
 make install
 
