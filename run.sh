@@ -1,5 +1,5 @@
-VER="3.14.0"
-MINOR="a1"
+VER="3.15.0"
+MINOR="rc1"
 VERSION="${VER}${MINOR}"
 
 curl -L "https://www.python.org/ftp/python/${VER}/Python-${VER}${MINOR}.tgz" | tar -xz
